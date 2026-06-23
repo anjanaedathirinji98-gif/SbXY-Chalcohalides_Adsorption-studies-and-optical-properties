@@ -1,1 +1,10 @@
-
+#####GW-BSE Calculation is 4 step calculation-scf, optics, GW, BSE
+The common files for all calculation is KPOINTS, POSCAR, POTCAR
+First step is scf
+The WAVECAR file from scf calculation needs to be given to the optics calculation.
+Second step is optics calculation
+From the result files, the WAVECAR and WAVEDER files needs to be taken for GW calculation
+Third step is GW Calculation
+From the result files, all the wavecar and waveder files needs to be taken for BSE Calculation
+This provide optical properties with excitonic effect
+To get optical properties without excitonic effect, the GW-RPA Calculation needs to be done, after the third step.
