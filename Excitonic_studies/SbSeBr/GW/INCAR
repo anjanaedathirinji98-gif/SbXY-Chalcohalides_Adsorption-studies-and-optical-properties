@@ -1,1 +1,8 @@
+ALGO = GW0
+NELM  = 1
+NOMEGA = 32
+   ISMEAR = 0
+   SIGMA = 0.1
+NBANDS = 256
 
+IVDW = 20
