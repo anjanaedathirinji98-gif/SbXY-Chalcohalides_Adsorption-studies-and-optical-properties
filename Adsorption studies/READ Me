@@ -1,0 +1,3 @@
+For adsorption energy calculation, we need files of INCAR, KPOINTS, POSCAR and POTCAR
+INCAR and KPOINTS for all the adsorption energy calculation are same.
+POSCAR and POTCAR files for each adsorption energy calculations are presented in specific folders
