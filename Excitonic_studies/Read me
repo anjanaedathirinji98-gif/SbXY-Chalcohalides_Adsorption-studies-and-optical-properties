@@ -1,10 +1,102 @@
-#####GW-BSE Calculation is 4 step calculation-scf, optics, GW, BSE
-The common files for all calculation is KPOINTS, POSCAR, POTCAR
-First step is scf
-The WAVECAR file from scf calculation needs to be given to the optics calculation.
-Second step is optics calculation
-From the result files, the WAVECAR and WAVEDER files needs to be taken for GW calculation
-Third step is GW Calculation
-From the result files, all the wavecar and waveder files needs to be taken for BSE Calculation
-This provide optical properties with excitonic effect
-To get optical properties without excitonic effect, the GW-RPA Calculation needs to be done, after the third step.
+# GW-BSE Calculation Workflow (VASP)
+
+The GW-BSE workflow consists of the following calculation steps:
+
+1. Self-Consistent Field (SCF)
+2. Optical Properties (Optics)
+3. GW Calculation
+4. RPA (without excitonic interaction) or BSE (with excitonic interaction)
+
+## Common Input Files
+
+The following input files are required for all calculation steps:
+
+- `KPOINTS`
+- `POSCAR`
+- `POTCAR`
+
+---
+
+## Step 1: SCF Calculation
+
+Run a standard SCF calculation.
+
+### Output Required
+- `WAVECAR`
+
+The `WAVECAR` generated in this step is required as input for the Optics calculation.
+
+---
+
+## Step 2: Optics Calculation
+
+Run the Optics calculation using the `WAVECAR` obtained from the SCF calculation.
+
+### Output Required
+- `WAVECAR`
+- `WAVEDER`
+
+These files are required as inputs for the GW calculation.
+
+---
+
+## Step 3: GW Calculation
+
+Run the GW calculation using the `WAVECAR` and `WAVEDER` files obtained from the Optics calculation.
+
+### Output Required
+- `WAVECAR`
+- `WAVEDER`
+
+These files are required for subsequent optical calculations.
+
+---
+
+## Step 4A: BSE Calculation (Including Excitonic Effects)
+
+Run the Bethe-Salpeter Equation (BSE) calculation using the `WAVECAR` and `WAVEDER` files obtained from the GW calculation.
+
+**Output:**
+- Optical properties **including excitonic effects**.
+
+---
+
+## Step 4B: GW-RPA Calculation (Without Excitonic Effects)
+
+Alternatively, perform a GW-RPA calculation after the GW step.
+
+**Output:**
+- Optical properties **without excitonic effects** (Random Phase Approximation).
+
+---
+
+## Workflow Summary
+
+```text
+SCF
+ │
+ └──► WAVECAR
+        │
+        ▼
+     Optics
+        │
+        ├──► WAVECAR
+        └──► WAVEDER
+               │
+               ▼
+              GW
+               │
+        ├──► WAVECAR
+        └──► WAVEDER
+               │
+        ┌──────┴──────┐
+        ▼             ▼
+    GW-RPA          BSE
+ (No excitons)  (With excitons)
+```
+
+## Notes
+
+- `KPOINTS`, `POSCAR`, and `POTCAR` remain the same throughout the workflow.
+- Ensure that the required `WAVECAR` and `WAVEDER` files are copied from the previous step before starting the next calculation.
+- The BSE calculation includes electron-hole (excitonic) interactions, whereas the GW-RPA calculation neglects these interactions.
