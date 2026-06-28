@@ -1,0 +1,5 @@
+ENCUT = 450
+   ISMEAR = 0
+   SIGMA = 0.1
+NBANDS = 256
+IVDW = 20
