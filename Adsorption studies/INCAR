@@ -1,4 +1,4 @@
-System MoS2 bulk
+
 #relaxation
   IBRION = 2
     ISIF = 2
@@ -8,38 +8,15 @@ System MoS2 bulk
   EDIFF = 1.0e-04
   EDIFFG = -0.01
 !  ALGO = Normal (blocked Davidson)
-
-!ISPIN = 1
-!MAGMOM =2*5.0 4*0.6
-!LMAXMIX = 4
-
-!NGXF = 192
-!NGYF = 192
-!ngZF = 480
-
 #start
  NPAR = 8
-! ISTART = 0
-! ICHARG = 11
 #
 LREAL = .FALSE.
-!NELMIN = 6
-!NELM  = 900
-! ISYM = 0
    ISMEAR = 0
    SIGMA = 0.05
- # Projections and DOS
-!LORBIT = 11
 #Paralellisation
 LPLANE = .TRUE.
-
-
-!Emin = -15
-!Emax = +15
-!NEDOS = 4000
-
-!LVTOT = .TRUE. 
-#
+############
 #Van-der-Waals
  IVDW= 20
 
